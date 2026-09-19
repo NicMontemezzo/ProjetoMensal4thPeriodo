@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:16
+    container_name: cantina-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: cantina_db
+      POSTGRES_USER: cantina_user
+      POSTGRES_PASSWORD: cantina_pass
+    ports:
+      - "5433:5432"
+    volumes:
+      - cantina_data:/var/lib/postgresql/data
+volumes:
+  cantina_data:
