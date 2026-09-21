@@ -1,0 +1,59 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3>Listagem de alunos</h3>
+                    <div class="direita">
+                        <button type="button" class="btn btn-primary" routerLink="/admin/alunos/new">Novo</button>
+                    </div>
+                    <br>
+                    <table border="1" class="table table-striped">
+                        <thead>
+                            <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Sexo</th>
+                            <th scope="col">Ano de Nascimento</th>
+                            <th scope="col" class="direita">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (aluno of lista; track aluno.id) {
+                            <tr>
+                                <td>{{aluno.id}}</td>
+                                <td>{{aluno.nome}}</td>
+                                <td>{{aluno.sexo}}</td>
+                                <td>{{aluno.anoNascimento}}</td>
+                                <td class="direita">
+                                     <button type="button" class="btn btn-warning me-1" [routerLink]="['/admin/alunos/edit', aluno.id]">Editar</button>
+                                     <button type="button" class="btn btn-danger" (click)="deletar(aluno)">Excluir</button>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de confirmação de exclusão -->
+<div mdbModal #confirmModal="mdbModal" class="modal fade" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar exclusão</h5>
+                <button type="button" class="btn-close" (click)="confirmModal.hide()" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+                Tem certeza que deseja excluir o aluno <strong>{{ alunoSelecionado?.nome }}</strong>? Essa ação não pode ser desfeita.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="confirmModal.hide()">Cancelar</button>
+                <button type="button" class="btn btn-danger" (click)="confirmarExclusao(confirmModal)">Excluir</button>
+            </div>
+        </div>
+    </div>
+</div>
