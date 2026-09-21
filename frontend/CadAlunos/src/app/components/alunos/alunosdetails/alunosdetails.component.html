@@ -1,0 +1,36 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3>Cadastrar novo aluno</h3>
+                    <br>
+
+                     <mdb-form-control>
+                        <input mdbInput type="text" id="nome" class="form-control mb-3" [(ngModel)]='aluno.nome'/>
+                        <label mdbLabel class="form-label" for="nome">Nome</label>
+                    </mdb-form-control>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="sexo">Sexo</label>
+                        <select id="sexo" class="form-select" [(ngModel)]="aluno.sexo">
+                            <option value="" disabled>Selecione</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Feminino">Feminino</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+                    </div>
+
+                     <mdb-form-control>
+                        <input mdbInput type="number" id="anoNascimento" class="form-control mb-3" [(ngModel)]='aluno.anoNascimento' min="1900" max="2100"/>
+                        <label mdbLabel class="form-label" for="anoNascimento">Ano de Nascimento</label>
+                    </mdb-form-control>
+
+                    <br>
+
+                     <button type="button" class="btn btn-primary" (click)="salvar()">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
